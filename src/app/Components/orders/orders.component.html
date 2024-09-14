@@ -1,0 +1,68 @@
+<section class="container xl:max-w-screen-xl p-10 my-7 rounded-xl shadow-lg bg-slate-100">
+    <h2 class="text-3xl my-7 text-center">
+        Order Details
+    </h2>
+
+    <form [formGroup]="detailsForm" (ngSubmit)="orderSubmit()">
+
+        <!-- Details Input -->
+        <label for="details">Details:</label>
+        <div class="relative">
+            <div class="absolute top-6 start-0 flex items-center ps-3.5 pointer-events-none">
+                <i class="fa-solid fa-circle-info"></i>
+            </div>
+            <textarea id="details" formControlName="details" type="text" class="form-control ps-10" [ngClass]="{
+                'input-success': !detailsForm.get('details')?.errors && (detailsForm.get('details')?.touched || detailsForm.get('details')?.dirty),
+                'input-error': detailsForm.get('details')?.errors && (detailsForm.get('details')?.touched || detailsForm.get('details')?.dirty)
+            }"></textarea>
+        </div>
+        @if (detailsForm.get('details')?.errors && (detailsForm.get('details')?.touched || detailsForm.get('details')?.dirty)) {
+            @if (detailsForm.get('details')?.getError('required')) {
+                <p class="text-red-600 font-bold mb-4">Details is required.</p>
+            }
+        }
+
+        <!-- Phone Input -->
+        <label for="phone">Phone:</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+            <input formControlName="phone" id="phone" class="form-control ps-10" [ngClass]="{
+                'input-success': !detailsForm.get('phone')?.errors && (detailsForm.get('phone')?.touched || detailsForm.get('phone')?.dirty),
+                'input-error': detailsForm.get('phone')?.errors && (detailsForm.get('phone')?.touched || detailsForm.get('phone')?.dirty)
+            }" type="tel">
+         </div>
+         @if (detailsForm.get('phone')?.errors && (detailsForm.get('phone')?.touched || detailsForm.get('phone')?.dirty)) {
+            @if (detailsForm.get('phone')?.getError('required')) {
+                <p class="text-red-600 font-bold mb-4">Phone number is required.</p>
+            }
+            @else if (detailsForm.get('phone')?.getError('pattern')) {
+                <p class="text-red-600 font-bold mb-4">Please enter a valid phone number.</p>
+            }
+        }
+
+        <!-- City Input -->
+        <label for="city">City:</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                <i class="fa-solid fa-city"></i>
+            </div>
+            <input formControlName="city" id="city" class="form-control ps-10" [ngClass]="{
+                'input-success': !detailsForm.get('city')?.errors && (detailsForm.get('city')?.touched || detailsForm.get('city')?.dirty),
+                'input-error': detailsForm.get('city')?.errors && (detailsForm.get('city')?.touched || detailsForm.get('city')?.dirty)
+            }" type="text">
+            </div>
+        
+        @if (detailsForm.get('city')?.errors && (detailsForm.get('city')?.touched || detailsForm.get('city')?.dirty)) {
+            @if (detailsForm.get('city')?.getError('required')) {
+                <p class="text-red-600 font-bold mb-4">City is required.</p>
+            }
+            @else if (detailsForm.get('city')?.getError('minlength')) {
+                <p class="text-red-600 font-bold mb-4">City must be more than 3 characters.</p>
+            }
+        }
+
+        <button  class="btn-main ms-auto block mt-5">Check Out</button>
+    </form>
+</section>

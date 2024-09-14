@@ -1,0 +1,29 @@
+{
+  "navbar": {
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "brands": "Brands",
+    "signout": "Sign Out",
+    "lang": "English" 
+  },
+  "categories": {
+    "music": "Music",
+    "men's-fashion": "Men's Fashion",
+    "women's-fashion": "Women's Fashion",
+    "supermarket": "SuperMarket",
+    "baby-and-toys": "Baby & Toys",
+    "home": "Home",
+    "books": "Books",
+    "beauty-and-health": "Beauty & Health",
+    "mobiles": "Mobiles",
+    "electronics": "Electronics"
+  },
+  "products": {
+    "popular-products": "Popular Products",
+    "all-products": "All Products"
+  },
+  "details":{
+    "product-details": "Product Details"
+  }
+}

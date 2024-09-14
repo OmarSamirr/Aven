@@ -1,0 +1,25 @@
+{
+  "navbar": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "categories": "Kategorien",
+    "brands": "Marken",
+    "signout": "Abmelden",
+    "lang": "Deutsch" 
+  },
+  "categories": {
+    "music": "Musik",
+    "men's-fashion": "Herrenmode",
+    "women's-fashion": "Damenmode",
+    "supermarket": "Supermarkt",
+    "baby-and-toys": "Baby und Spielzeug",
+    "home": "Zuhause",
+    "books": "Bücher",
+    "beauty-and-health": "Schönheit und Gesundheit",
+    "mobiles": "Handys",
+    "electronics": "Elektronik"
+  },
+  "products": {
+    "popular-products": "Beliebte Produkte"
+  }
+}

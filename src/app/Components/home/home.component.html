@@ -1,0 +1,100 @@
+<!-- Main Slider -->
+ <section class="my-8">
+    <div class="grid md:grid-cols-[70%_minmax(0,1fr)] grid-cols-1">
+        <div class="main-slider">
+            <swiper-container class="mySwiper" rewind="true" [dir]="direction()" autoplay-delay="5000" autoplay-disable-on-interaction="true" navigation="true" pagination="true" effect="flip" grab-cursor="true">
+                <swiper-slide>
+                  <img class="w-full h-[500px]" src="./assets/images/img-1.jpg" />
+                </swiper-slide>
+                <swiper-slide>
+                  <img class="w-full h-[500px]" src="./assets/images/img-5.jpg" />
+                </swiper-slide>
+                <swiper-slide>
+                    <img class="w-full h-[500px]" src="./assets/images/img-2.jpg" />
+                </swiper-slide>
+                <swiper-slide>
+                  <img class="w-full h-[500px]" src="./assets/images/img-6.jpg" />
+                </swiper-slide>
+                <swiper-slide>
+                    <img class="w-full h-[500px]" src="./assets/images/img-3.jpg" />
+                </swiper-slide>
+                <swiper-slide>
+                  <img class="w-full h-[500px]" src="./assets/images/img-7.jpg" />
+                </swiper-slide>
+                <swiper-slide>
+                  <img class="w-full h-[500px]" src="./assets/images/img-4.jpg" />
+                </swiper-slide>
+                <swiper-slide>
+                  <img class="w-full h-[500px]" src="./assets/images/img-8.jpg" />
+                </swiper-slide>
+            </swiper-container>
+        </div>
+        <div>
+            <img class="h-[250px]" src="./assets/images/grocery-banner.png"  alt="">
+            <img class="h-[250px]" src="./assets/images/grocery-banner-2.jpeg" alt="">
+        </div>
+    </div>
+    
+ </section>
+
+<!-- Categories Slider -->
+<section>
+    <owl-carousel-o [options]="catCustomOptions">
+        @for (slide of categoriesList(); track slide._id) {
+            <ng-template carouselSlide >
+                <img [src]="slide.image" class="w-full h-64" [alt]="slide.slug">
+                <h3 class="text-md text-center text-main">{{"categories."+slide.slug | translate}} </h3>
+            </ng-template>
+        }
+    </owl-carousel-o>
+</section>
+
+<!-- Popular Products -->
+<section>
+<h2 class="text-main text-4xl mb-5"> {{"products.popular-products" | translate}} </h2>
+
+<div class="relative w-1/2 mx-auto">
+    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <input [(ngModel)]="term" type="search" placeholder="Search..." class="form-control ps-10">
+</div>
+
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-7 my-7">
+    
+    @for (product of productsList().slice(0,12) | search : term() ; track product.id) {
+        <div [routerLink]="['/details', product.id]" class="card w-full product group/card overflow-hidden cr mx-auto bg-white rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                <a>
+                    <img class="p-8 rounded-t-lg" [src]="product.imageCover" [alt]="product.slug" />
+                </a>
+                <div class="px-4 pb-5">
+                    <a>
+                        <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"> {{product.title.split(" ",2).join(" ")}} </h5>
+                    </a>
+                    <div class="flex items-center mt-2.5 mb-5">
+                        <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                            @for (star of [1,2,3,4,5]; track $index) {
+                                @if (star <= product.ratingsAverage) {
+                                    <span><i class="fa-solid fa-star rating-color"></i></span>
+                                }
+                            }
+                            @if(product.ratingsAverage % 1 !== 0 ) {
+                                <span><i [style.background-image]="'linear-gradient(to right,#ffc908 '+product.ratingDecimal+'%,transparent 1%)'" class="fa-solid fa-star half-star"></i></span>
+                            }
+                        </div>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3"> {{product.ratingsAverage}}  </span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">EGP{{product.price}} </span>
+                    <div class="flex items-center justify-between">
+                        
+                        <span (click)="$event.stopPropagation();toggleWishlist(product.id, product.isInWishlist)" [class]="product.isInWishlist?'text-red-600':'text-black'" class=" hover:text-red-600 relative end-28 group-hover/card:end-0 duration-700 font-medium rounded-lg text-center dark:bg-white dark:hover:bg-red-600 dark:focus:ring-red-700"><i class="fa-solid fa-heart text-4xl"></i></span>
+                        <span (click)="$event.stopPropagation();addToCart(product.id)" class="text-white bg-blue-700 hover:bg-blue-800 relative start-28 group-hover/card:start-0 duration-700 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><i class="fa-solid fa-cart-plus text-lg"></i></span>
+                    </div>
+                </div>
+        </div>
+    }
+
+</div>
+
+    
+</section>

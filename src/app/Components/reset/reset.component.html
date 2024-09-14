@@ -1,0 +1,136 @@
+<section class="container xl:max-w-screen-xl p-10 my-7 rounded-xl shadow-lg bg-slate-100">
+    @if (step === 1) {
+        <h2 class="text-3xl my-7 text-main">
+            Reset Password:
+        </h2>
+
+        <form [formGroup]="emailCheckForm">
+
+            <!-- Email Input -->
+            <label for="email">Enter Your Email:</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <i class="fa-solid fa-at"></i>
+                </div>
+                <input id="email" formControlName="email" type="email" class="form-control ps-10" [ngClass]="{
+                    'input-success': !emailCheckForm.get('email')?.errors && (emailCheckForm.get('email')?.touched || emailCheckForm.get('email')?.dirty),
+                    'input-error': emailCheckForm.get('email')?.errors && (emailCheckForm.get('email')?.touched || emailCheckForm.get('email')?.dirty)
+                }">
+            </div>
+            @if (emailCheckForm.get('email')?.errors && (emailCheckForm.get('email')?.touched || emailCheckForm.get('email')?.dirty)) {
+                @if (emailCheckForm.get('email')?.getError('required')) {
+                    <p class="text-red-600 font-bold mb-4">Email is required.</p>
+                }
+                @else if (emailCheckForm.get('email')?.getError('email')) {
+                    <p class="text-red-600 font-bold mb-4">Please enter a valid email address.</p>
+                }
+            }
+    
+            <div class="flex justify-end items-center gap-6">
+                <button (click)="emailSubmit()" [disabled]="isLoading" class="btn-main">Next
+                @if (isLoading) {
+                    <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+            </button>
+    
+            </div>
+            
+            @if (errorMessage) {
+                <p class="text-red-600 font-bold">{{errorMessage}}</p>
+            }
+        </form>
+    }
+    @else if (step === 2) {
+        <h2 class="text-3xl my-7 text-main">
+            Verify Email Address:
+        </h2>
+
+        <form [formGroup]="codeCheckForm">
+
+            <!-- Code Input -->
+            <label for="code">Enter Code Sent to Your Email:</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+                <input id="code" formControlName="resetCode" type="text" class="form-control ps-10" [ngClass]="{
+                    'input-success': !codeCheckForm.get('resetCode')?.errors && (codeCheckForm.get('resetCode')?.touched || codeCheckForm.get('resetCode')?.dirty),
+                    'input-error': codeCheckForm.get('resetCode')?.errors && (codeCheckForm.get('resetCode')?.touched || codeCheckForm.get('resetCode')?.dirty)
+                }">
+            </div>
+            @if ((errorMessage)||(codeCheckForm.get('resetCode')?.errors && (codeCheckForm.get('resetCode')?.touched || codeCheckForm.get('resetCode')?.dirty))) {
+                @if (codeCheckForm.get('resetCode')?.getError('required')) {
+                    <p class="text-red-600 font-bold mb-4">Verification code is required.</p>
+                }
+                @else if (codeCheckForm.get('resetCode')?.getError('pattern')) {
+                    <p class="text-red-600 font-bold mb-4">Invalid code format (6 digits).</p>
+                }
+                @else if (errorMessage) {
+                <p class="text-red-600 font-bold mb-4"> {{errorMessage}} </p>
+            }
+            }
+            
+    
+            <div class="flex justify-end items-center gap-6">
+                <button (click)="codeSubmit()" [disabled]="isLoading" class="btn-main">Next
+                @if (isLoading) {
+                    <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+            </button>
+    
+            </div>
+            
+            
+        </form>
+    }
+    @else if (step === 3) {
+        <h2 class="text-3xl my-7 text-main">
+            Enter new Password:
+        </h2>
+
+        <form [formGroup]="newPasswordForm">
+
+            <!-- Email Input -->
+            <label for="email">Email:</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+                <input readonly id="email" formControlName="email" type="text" class="form-control ps-10">
+            </div>
+            
+            <!-- New Password Input -->
+            <label for="newPassword">New Password:</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+            <input formControlName="newPassword" id="newPassword" class="form-control ps-10" [ngClass]="{
+                'input-success': !newPasswordForm.get('newPassword')?.errors && (newPasswordForm.get('newPassword')?.touched || newPasswordForm.get('newPassword')?.dirty),
+                'input-error': newPasswordForm.get('newPassword')?.errors && (newPasswordForm.get('newPassword')?.touched || newPasswordForm.get('newPassword')?.dirty)
+            }" type="password">
+            </div>
+            @if (newPasswordForm.get('newPassword')?.errors && (newPasswordForm.get('newPassword')?.touched || newPasswordForm.get('newPassword')?.dirty)) {
+                @if (newPasswordForm.get('newPassword')?.getError('required')) {
+                    <p class="text-red-600 font-bold mb-4">Password is required.</p>
+                }
+                @else if (newPasswordForm.get('newPassword')?.getError('pattern')) {
+                    <p class="text-red-600 font-bold mb-4">Password must me more than 6 characters.</p>
+                }
+            }
+
+            <div class="flex justify-end items-center gap-6">
+                <button (click)="newPasswordSubmit()" [disabled]="isLoading" class="btn-main">Finish
+                @if (isLoading) {
+                    <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+            </button>
+    
+            </div>
+            @if (errorMessage) {
+                <p class="text-red-600 font-bold">{{errorMessage}}</p>
+            }
+            
+        </form>
+    }
+</section>

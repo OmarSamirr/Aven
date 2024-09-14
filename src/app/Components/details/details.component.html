@@ -1,0 +1,41 @@
+@if (productDetails) {
+    <section class="mx-4">
+        <h2 class="text-center text-4xl text-main my-16">Product Details</h2>
+        <div class="grid mx-auto container xl:max-w-screen-xl grid-cols-1 items-center my-10 md:grid-cols-[30%_minmax(0,1fr)] gap-20">
+            <div class="w-1/2 md:w-full md:text-center">
+                <swiper-container class="mySwiper" effect="cards" grab-cursor="true">
+                    @for (image of productDetails.images; track $index) {
+                        <swiper-slide class="cr rounded-lg"><img [src]="image" class="scale-125" alt=""></swiper-slide>
+                    }
+                </swiper-container>
+            </div>
+
+            <div>
+                <h4 class="text-4xl"> {{productDetails.title}} </h4>
+                <p class="text-gray-400 my-5">  {{productDetails.description}} </p>
+                <div class="flex items-center mt-2.5 mb-5">
+                    <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                        @for (star of [1,2,3,4,5]; track $index) {
+                            @if (star <= productDetails.ratingsAverage) {
+                                <span><i class="fa-solid fa-star rating-color"></i></span>
+                            }
+                        }
+                        @if(productDetails.ratingsAverage % 1 !== 0 ) {
+                            <span><i  class="fa-solid fa-star-half rating-color"></i></span>
+                        }
+                    </div>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3"> {{productDetails.ratingsAverage}}  </span>
+                </div>
+                <div class="flex items-center justify-between w-full pe-8">
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">EGP{{productDetails.price}} </span>
+                    <div class="flex justify-center ">
+                        <span (click)="addToWishlist(productDetails._id)" class="text-white bg-red-600 hover:bg-red-800 font-medium cr rounded-lg px-5 py-2.5 text-center text-lg"><i class="fa-solid fa-heart"></i> Add To Wishlist</span>
+                        <span (click)="addToCart(productDetails._id)" class="text-white bg-blue-700 hover:bg-blue-800 font-medium cr rounded-lg px-5 py-2.5 ms-5 text-center text-lg"><i class="fa-solid fa-cart-plus"></i> Add To Cart</span>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+}

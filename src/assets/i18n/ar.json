@@ -1,0 +1,25 @@
+{
+  "navbar": {
+    "home": "الصفحة الرئيسية",
+    "products": "المنتجات",
+    "categories": "الفئات",
+    "brands": "العلامات التجارية",
+    "signout": "تسجيل الخروج",
+    "lang": "العربية" 
+  },
+  "categories": {
+    "music": "موسيقى",
+    "men's-fashion": "أزياء الرجال",
+    "women's-fashion": "أزياء النساء",
+    "supermarket": "سوبر ماركت",
+    "baby-and-toys": "ألعاب وأطفال",
+    "home": "المنزل",
+    "books": "كتب",
+    "beauty-and-health": "الجمال والصحة",
+    "mobiles": "الهواتف المحمولة",
+    "electronics": "الإلكترونيات"
+  },
+  "products": {
+    "popular-products": " المنتجات الأكثر مبيعاً"
+  }
+}

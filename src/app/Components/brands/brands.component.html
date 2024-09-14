@@ -1,0 +1,17 @@
+<section class="my-8">
+    <h2 class="text-main text-4xl mb-5">All Brands</h2>
+  
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 my-7">
+      @for (brand of brandsList() ; track brand._id) {
+      <div
+        class="card w-full category group/card overflow-hidden cr mx-auto bg-white rounded-lg dark:bg-gray-800 dark:border-gray-700"
+      >
+        <img [src]="brand.image" class="w-full h-64" [alt]="brand.slug" />
+        <h3 class="text-xl mt-3 text-center text-main">
+          {{ brand.name }}
+        </h3>
+      </div>
+      }
+    </div>
+  </section>
+  

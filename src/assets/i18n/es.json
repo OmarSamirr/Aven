@@ -1,0 +1,25 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "products": "Productos",
+    "categories": "Categorías",
+    "brands": "Marcas",
+    "signout": "Cerrar sesión",
+    "lang": "Español" 
+  },
+  "categories": {
+    "music": "Música",
+    "men's-fashion": "Moda masculina",
+    "women's-fashion": "Moda femenina",
+    "supermarket": "Supermercado",
+    "baby-and-toys": "Bebés y juguetes",
+    "home": "Hogar",
+    "books": "Libros",
+    "beauty-and-health": "Belleza y salud",
+    "mobiles": "Móviles",
+    "electronics": "Electrónica"
+  },
+  "products": {
+    "popular-products": "Productos populares"
+  }
+}

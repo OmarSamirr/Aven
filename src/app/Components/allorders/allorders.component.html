@@ -1,0 +1,48 @@
+<section class="bg-gray-100 p-4 rounded-lg my-6">
+  <h1 class="text-4xl mb-6 text-center">Your Orders</h1>
+
+  @for (item of ordersList ; track item.id) {
+  <div
+    class="contianer grid grid-cols-2 my-4 border p-4 rounded-lg border-gray-200"
+  >
+    <div class="md:flex md:flex-row items-center justify-between p-3">
+      <div>
+        <h3 class="text-xl font-semibold mb-16">Order ID: {{ item.id }}</h3>
+        <h5>Total Price: {{ item.totalOrderPrice | currency : "EGP " }}</h5>
+        <h5>Shipping Price: {{ item.shippingPrice| currency : "EGP " }}</h5>
+        <h5>Tax: {{ item.taxPrice | currency : "EGP " }}</h5>
+      </div>
+
+      
+      <div>
+        <span class="block text-xl m-3 capitalize">
+          Payment: {{ item.paymentMethodType }}
+        </span>
+        <span class="block text-xl m-3">
+          Number of Items: {{ item.cartItems.length }}
+        </span>
+      </div>
+    </div>
+    <div class="md:flex md:flex-row items-center justify-between p-3">
+      <div>
+        <h3 class="text-xl mb-3">Order Date: {{ item.createdAt | date:'dd/MM/YYYY' }}</h3>
+        <h3 class="text-xl mb-3">Delivery status: {{ item.isDelivered?"Deliverd":"Shipped" }}</h3>
+        <h3 class="text-xl mb-3">Payment status: {{ item.isPaid?"Paid":"Unpaid" }}</h3>
+      </div>
+
+        <div>
+            <span class="block text-xl ">
+              User Details:
+            </span>
+            <h5 class="capitalize m-3">Name: {{ item.user.name }}</h5>
+            <h5 class="capitalize m-3">email: {{ item.user.email }}</h5>
+            <h5 class="capitalize m-3">Phone: {{ item.user.phone }}</h5>
+          </div>
+    </div>
+  </div>
+  } @empty {
+  <h1 class="text-2xl mt-6 border p-4 rounded-lg border-gray-200">
+    You Have No Orders.
+  </h1>
+  }
+</section>

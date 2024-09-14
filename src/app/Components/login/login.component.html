@@ -1,0 +1,62 @@
+<section class="container xl:max-w-screen-xl p-10 my-7 rounded-xl shadow-lg bg-slate-100">
+    <h2 class="text-3xl my-7 text-main">
+        Login:
+    </h2>
+
+    <form [formGroup]="loginForm">
+
+        <!-- Email Input -->
+        <label for="email">Email:</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                <i class="fa-solid fa-at"></i>
+            </div>
+            <input id="email" formControlName="email" type="email" class="form-control ps-10" [ngClass]="{
+                'input-success': !loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty),
+                'input-error': loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)
+            }">
+        </div>
+        @if (loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)) {
+            @if (loginForm.get('email')?.getError('required')) {
+                <p class="text-red-600 font-bold mb-4">Email is required.</p>
+            }
+            @else if (loginForm.get('email')?.getError('email')) {
+                <p class="text-red-600 font-bold mb-4">Please enter a valid email address.</p>
+            }
+        }
+
+        <!-- Password input -->
+        <label for="password">Password:</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <input id="password" formControlName="password" type="password" class="form-control ps-10" [ngClass]="{
+                'input-success': !loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty),
+                'input-error': loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)
+            }">
+        </div>
+        @if (loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)) {
+            @if (loginForm.get('password')?.getError('required')) {
+                <p class="text-red-600 font-bold mb-4">Password is required.</p>
+            }
+        }
+
+        <div class="flex justify-end items-center gap-6">
+            <a routerLink="/reset" class="cr text-main font-semibold duration-300">Forgot Your Password?</a>
+            <button (click)="confirmUser()" [disabled]="isLoading" class="btn-main">Login
+            @if (isLoading) {
+                <span><i class="fas fa-spin fa-spinner"></i></span>
+            }
+        </button>
+
+        </div>
+        
+        @if (errorMessage) {
+            <p class="text-red-600 font-bold">{{errorMessage}}</p>
+        }
+        @if (successStatus) {
+            <p class="text-green-600 font-bold">User logged in.</p>
+        }
+    </form>
+</section>

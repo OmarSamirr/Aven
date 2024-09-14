@@ -1,0 +1,32 @@
+<section class="bg-gray-100 p-4 rounded-lg my-6">
+    <h1 class="text-4xl mb-6 text-center">Your Wishlist</h1>
+  
+    @for (item of wishlistProducts() ; track item.id) {
+    <div
+      class="contianer grid grid-cols-[50%_minmax(0,1fr)] md:grid-cols-[10%_minmax(0,1fr)] my-4 border p-4 rounded-lg border-gray-200"
+    >
+      <div>
+        <img [src]="item.imageCover" [alt]="item.title" />
+      </div>
+      <div class="md:flex md:flex-row items-center justify-between p-3">
+        <div>
+          <h3 class="text-xl font-semibold mb-3">{{ item.title }}</h3>
+          <h5>Price: {{ item.price | currency : "EGP " }}</h5>
+          <span
+            (click)="deleteItem(item.id)"
+            class="text-red-600 cr inline-block mt-3 border-2 border-red-600 p-2 rounded hover:bg-red-500 hover:text-white duration-150"
+            ><i class="fa-regular fa-trash-can fa-xl"></i
+          ></span>
+        </div>
+        <div>
+            <span (click)="addToCart(item.id)" class="text-white bg-blue-700 hover:bg-blue-800 font-medium cr rounded-lg px-5 py-2.5 ms-5 text-center text-lg"><i class="fa-solid fa-cart-plus"></i> Add To Cart</span>
+        </div>
+      </div>
+    </div>
+    } @empty {
+    <h1 class="text-2xl mt-6 border p-4 rounded-lg border-gray-200">
+      Your Wishlist is Empty.
+    </h1>
+    }
+  </section>
+  

@@ -1,0 +1,10 @@
+.card:hover{
+    scale: 1.1;
+}
+.card{
+    transition: all 0.5s;
+}
+.half-star{
+    background-clip: text;
+    color: transparent;
+}
