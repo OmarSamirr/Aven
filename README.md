@@ -4,7 +4,7 @@ Aven is a modern, user-friendly platform designed to offer a smooth shopping exp
 .
 
 ## Demo
-The Website [Link](https://).
+The Website [Link](https://agentaven.netlify.app/).
 
 ## Technologies Used
 
@@ -21,9 +21,10 @@ The Website [Link](https://).
    
 ## Features
 
-* Create new user (sign up).
-* Login with your credentials.
-* Validation of credentials at signing up.
-* Duplicate user handling.
-* Categorized games.
-* Video autoplay on hover.
+* Product Listings: Browse products with detailed descriptions, prices, and images.
+* Search & Filter: Quickly find what you're looking for.
+* Shopping Cart: Effortlessly manage items in your cart.
+* User Authentication: Secure login and personalized account experiences.
+* Order Management: Track orders and view your order history.
+* Payment Integration: Smooth checkout with integrated payment solutions.
+* Responsive Web Design: Compatible with all screen sizes.
